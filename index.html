@@ -1,0 +1,252 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Will You Be Mine, Always?</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#ffd6ea,#ffeef8,#f6ddff);
+overflow:hidden;
+}
+
+/* Floating Hearts */
+
+.heart{
+position:absolute;
+font-size:20px;
+animation:float 8s linear infinite;
+opacity:.7;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh) rotate(0deg);}
+100%{transform:translateY(-120px) rotate(360deg);}
+}
+
+.card{
+width:360px;
+padding:28px;
+border-radius:30px;
+background:rgba(255,255,255,.25);
+backdrop-filter:blur(15px);
+box-shadow:0 15px 35px rgba(255,105,180,.25);
+border:1px solid rgba(255,255,255,.4);
+text-align:center;
+position:relative;
+}
+
+h1{
+font-size:30px;
+color:#ff4f92;
+font-family:'Dancing Script',cursive;
+margin-top:10px;
+}
+
+.subtitle{
+color:#6b5b66;
+font-size:14px;
+margin:10px 0 20px;
+}
+
+.bear{
+font-size:70px;
+}
+
+.area{
+height:180px;
+background:rgba(255,255,255,.35);
+border:2px dashed #ffc1dc;
+border-radius:20px;
+position:relative;
+overflow:hidden;
+}
+
+button{
+position:absolute;
+padding:12px 22px;
+border:none;
+border-radius:40px;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+transition:.25s;
+}
+
+#yes{
+left:35px;
+bottom:20px;
+background:linear-gradient(90deg,#ff4f92,#ff8bb8);
+color:white;
+box-shadow:0 8px 18px rgba(255,79,146,.35);
+}
+
+#yes:hover{
+transform:scale(1.08);
+}
+
+#no{
+top:20px;
+right:35px;
+background:white;
+color:#666;
+}
+
+#letter{
+display:none;
+text-align:left;
+}
+
+#letter h2{
+text-align:center;
+color:#ff4f92;
+font-family:'Dancing Script',cursive;
+font-size:34px;
+margin-bottom:10px;
+}
+
+#text{
+line-height:1.9;
+font-size:15px;
+color:#555;
+white-space:pre-line;
+min-height:260px;
+}
+
+.sign{
+text-align:center;
+font-weight:bold;
+color:#ff4f92;
+margin-top:18px;
+font-size:18px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Floating Hearts -->
+
+<div class="heart" style="left:8%;animation-delay:0s;">💗</div>
+<div class="heart" style="left:22%;animation-delay:2s;">🌸</div>
+<div class="heart" style="left:45%;animation-delay:4s;">💕</div>
+<div class="heart" style="left:67%;animation-delay:1s;">💖</div>
+<div class="heart" style="left:88%;animation-delay:3s;">🌷</div>
+
+<div class="card">
+
+<div id="question">
+
+<div class="bear">🧸💖</div>
+
+<h1>Will</h1>
+
+<p class="subtitle">
+Every beautiful forever begins with one little **YES** ✨
+</p>
+
+<div class="area" id="play">
+
+<button id="yes">YES 💖</button>
+
+<button id="no">NO 🙈</button>
+
+</div>
+
+</div>
+
+<div id="letter">
+
+<h2>My Promise</h2>
+
+<div id="text"></div>
+
+<div class="sign">
+Forever Yours ❤️<br>
+— Suseela 🌷
+</div>
+
+</div>
+
+</div>
+
+<script>
+const no=document.getElementById("no");
+const play=document.getElementById("play");
+
+function moveNo(){
+
+const maxX=play.clientWidth-no.offsetWidth;
+const maxY=play.clientHeight-no.offsetHeight;
+
+const x=Math.random()*maxX;
+const y=Math.random()*maxY;
+
+no.style.left=x+"px";
+no.style.top=y+"px";
+no.style.right="auto";
+no.style.bottom="auto";
+
+}
+
+["mouseover","touchstart","click"].forEach(evt=>{
+no.addEventListener(evt,function(e){
+e.preventDefault();
+moveNo();
+},{passive:false});
+});
+
+const message=`To My Favorite Boy ❤️
+
+If you're reading this, it means you chose YES... and that makes my heart smile.
+
+I promise to respect you, support your dreams, and stay beside you through every happy moment and every difficult day.
+
+I'll celebrate your victories, hold your hand when life feels heavy, and remind you that you'll never face the world alone.
+
+I don't want a perfect love story...
+I simply want a real one, with you.
+
+Thank you for becoming my safe place.
+
+I choose you,
+today, tomorrow,
+and every day after. 💕`;
+
+document.getElementById("yes").onclick=()=>{
+
+document.getElementById("question").style.display="none";
+document.getElementById("letter").style.display="block";
+
+let i=0;
+const txt=document.getElementById("text");
+
+function type(){
+if(i<message.length){
+txt.innerHTML+=message.charAt(i);
+i++;
+setTimeout(type,35);
+}
+}
+type();
+
+};
+</script>
+
+</body>
+</html>
